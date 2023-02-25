@@ -1,0 +1,3 @@
+https://waksoft.susu.ru/2021/11/30/obnaruzhenie-kongurov-s-ispolzovaniem-opencv/ - поиск контуров
+https://tproger.ru/translations/opencv-python-guide/ - шпаргалки по openCV
+https://docs.opencv.org/4.x/da/d0c/tutorial_bounding_rects_circles.html - использование boundingRect (обрамление квадратом)
