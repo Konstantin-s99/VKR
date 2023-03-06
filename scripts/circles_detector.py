@@ -1,18 +1,20 @@
 import cv2
 
-image = cv2.imread("E:/Python_projects/VKR/test.jpg")
+image = cv2.imread("E:/Python_projects/VKR/results/test_noise3.jpg")
 gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-ret, binary_image = cv2.threshold(gray_image, 200, 255, cv2.THRESH_BINARY)
+blurred = cv2.medianBlur(gray_image, 5)
+# ret, binary_image = cv2.threshold(blurred, 80, 255, cv2.THRESH_BINARY)
+edges = cv2.Canny(blurred, 100, 200)
 
-contours, hierarchy = cv2.findContours(image=binary_image, mode=cv2.RETR_TREE, method=cv2.CHAIN_APPROX_NONE)
+# contours, hierarchy = cv2.findContours(image=binary_image, mode=cv2.RETR_TREE, method=cv2.CHAIN_APPROX_NONE)
+contours, hierarchy = cv2.findContours(image=edges, mode=cv2.RETR_EXTERNAL, method=cv2.CHAIN_APPROX_NONE)
 
 sel_contours = []
 boundRect = []
 
 for i in range(len(contours)):
-    if i % 2 == 1:
-        sel_contours.append(contours[i])
-        boundRect.append(cv2.boundingRect(contours[i]))
+    sel_contours.append(contours[i])
+    boundRect.append(cv2.boundingRect(contours[i]))
 
 image_copy = image.copy()
 
@@ -33,8 +35,11 @@ for i in range(len(boundRect)):
                   (int(boundRect[i][0]+boundRect[i][2]), int(boundRect[i][1]+boundRect[i][3])),
                   color=(255, 0, 0), thickness=2)
 
-cv2.imshow('binary image', binary_image)
-cv2.imshow('contours', image_copy)
+cv2.imshow('image', image)
+# cv2.imshow('blurred', blurred)
+# cv2.imshow('edges', edges)
+# cv2.imshow('contours', image_copy)
 cv2.imshow('rectangles', image_copy2)
-# cv2.imwrite('test_result.jpg', image_copy2)
+cv2.imwrite('results/test_noise3_result.jpg', image_copy2)
+
 cv2.waitKey(0)
