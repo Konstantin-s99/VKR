@@ -5,7 +5,8 @@ def thresh_callback(val):
     # max_thresh = val
     min_thresh = cv2.getTrackbarPos('Canny min thresh:', source_window)
     max_thresh = cv2.getTrackbarPos('Canny max thresh:', source_window)
-    edges = cv2.Canny(blurred_image, min_thresh, max_thresh)
+    edges = cv2.Canny(gray_image, min_thresh, max_thresh)
+
     cv2.imshow("Contours", edges)
 
 # image = cv2.imread("E:/Python_projects/VKR/test_noise.jpg")
@@ -32,18 +33,25 @@ def thresh_callback(val):
 # cv2.imshow('rectangles', image_copy)
 # cv2.waitKey(0)
 ##################################################
-image = cv2.imread("results/test_int_coins1.jpg")
-gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-blurred_image = cv2.GaussianBlur(gray_image, (3, 3), 0)
-# blurred_image = cv2.blurred = cv2.medianBlur(gray_image, 3)
+image_original = cv2.imread("results/second_algorithm/5_1.jpg")
 
-cv2.imshow("coins", blurred_image)
+scale_percent = 40
+width = int(image_original.shape[1] * scale_percent / 100)
+height = int(image_original.shape[0] * scale_percent / 100)
+dim = (width, height)
+image = cv2.resize(image_original, dim, interpolation=cv2.INTER_AREA)
+
+gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+# blurred_image = cv2.GaussianBlur(gray_image, (3, 3), 0)
+# blurred_image = cv2.blurred = cv2.medianBlur(gray_image, 5)
+
+cv2.imshow("coins", gray_image)
 
 source_window = 'Source'
 cv2.namedWindow(source_window)
 max_thresh = 255
-initial_max_threshold = 200
-initial_min_threshold = 100
+initial_max_threshold = 195
+initial_min_threshold = 45
 
 cv2.createTrackbar('Canny max thresh:', source_window, initial_max_threshold, max_thresh, thresh_callback)
 cv2.createTrackbar('Canny min thresh:', source_window, initial_min_threshold, max_thresh, thresh_callback)

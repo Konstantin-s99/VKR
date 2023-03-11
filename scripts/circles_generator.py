@@ -35,11 +35,12 @@ def create_intersection_circles(background_width, background_height, number_of_r
 
 
 if __name__ == "__main__":
-    # im_circles = create_intersection_circles(800, 600, 25, 60, 4)
-    # im_circles.show()
+    im_circles = create_intersection_circles(800, 600, 10, 60, 5)
+    im_circles.save("results/second_algorithm/2.jpg")
+    im_circles.show()
 
-    image = cv2.imread("E:/Python_projects/VKR/circles/test2.jpg")
-    noise_img = np.array(add_salt_paper(image, 0.05))
-    cv2.imshow("noise_circles", noise_img)
-    cv2.imwrite('results/test_noise3.jpg', noise_img)
-    cv2.waitKey(0)
+    # image = cv2.imread("E:/Python_projects/VKR/results/second_algorithm/test_with_triangles.jpg")
+    # noise_img = np.array(add_salt_paper(image, 0.05))
+    # cv2.imshow("noise_circles", noise_img)
+    # cv2.imwrite('results/second_algorithm/1.jpg', noise_img)
+    # cv2.waitKey(0)
