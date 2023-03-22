@@ -1,0 +1,7 @@
+train: E:\Python_projects\VKR\AI\yolov8_custom\train
+val: E:\Python_projects\VKR\AI\yolov8_custom\val
+
+nc: 1
+
+names:
+  0: "coin"

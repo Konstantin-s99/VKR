@@ -1,0 +1,6 @@
+1. yolo task=detect mode=train epochs=25 data=data_custom.yaml model=yolov8m.pt imgsz=640 batch=4
+2. yolo task=detect mode=predict model=yolov8m_custom.pt show=True conf=0.5 source=40.png save=True line_thickness=1 classes=[0] hide_labels=True save_txt=True
+	save_txt - для сохранения меток найденных объектов на фото
+3. yolo task=detect mode=predict model=yolov8m_custom.pt show=True conf=0.5 source=0
+4. yolo task=detect mode=predict model=yolov8m_custom.pt show=True conf=0.5 source=https://vk.com/video115393494_456239387
+5. yolo task=detect mode=predict model=yolov8m_custom.pt show=True conf=0.5 source=IMG_8579.MOV save=True
